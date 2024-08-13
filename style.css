@@ -3,11 +3,6 @@ body {
   font-family: Minecraft, Cambria, sans-serif;
   background-image: url("dirt2.png");
   background-repeat: repeat;
-  /*background-image: url("img0.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;*/
   image-rendering: crisp-edges;
   background-color: rgba(0, 0, 0, .2);
   
