@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Access Control System</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+            text-align: center;
+            animation: flicker 2s infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0.8;
+            }
+            21%, 56% {
+                opacity: 0.6;
+            }
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 2px solid #0f0;
+            background-color: #222;
+            color: #0f0;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        input[type="text"]::placeholder {
+            color: #0f0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #222;
+            color: #0f0;
+            border: 2px solid #0f0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0s 0.5s;
+            flex-direction: column;
+            z-index: 2;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease;
+        }
+
+        .overlay p {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        .close-btn {
+            background-color: #222;
+            color: #0f0;
+            border: 2px solid #0f0;
+            padding: 5px 15px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+
+        .attachment {
+            background-color: #222;
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            padding: 15px;
+            width: 300px;
+            text-align: left;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .attachment::before {
+            content: '📎';
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .attachment p {
+            margin: 0;
+            font-size: 16px;
+            color: #0f0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .attachment a {
+            color: #0f0;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .attachment a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Computer Access Control System</h1>
+        <input type="text" id="codeInput" placeholder="Enter code here...">
+        <button onclick="checkCode()">Submit</button>
+    </div>
+
+    <div id="overlay" class="overlay">
+        <p id="overlayMessage"></p>
+        <div id="attachment" class="attachment" style="display: none;">
+            <p>Download the file 'UNKNOWN.pdf'</p>
+            <a id="overlayLink" href="#" target="_blank"></a>
+        </div>
+        <button class="close-btn" onclick="closeOverlay()">Close</button>
+    </div>
+
+    <script>
+        function checkCode() {
+            const code = document.getElementById("codeInput").value.toLowerCase();
+            const overlay = document.getElementById("overlay");
+            const overlayMessage = document.getElementById("overlayMessage");
+            const attachment = document.getElementById("attachment");
+            const overlayLink = document.getElementById("overlayLink");
+
+            attachment.style.display = 'none'; // Hide the attachment by default
+
+            switch(code) {
+                case "master":
+                    overlayMessage.textContent = "You entered the master code! The darkness welcomes you...";
+                    break;
+                case "shadow":
+                    overlayMessage.textContent = "Code 'shadow' recognized. The shadows shift around you.";
+                    break;
+                case "whisper":
+                    overlayMessage.textContent = "Code 'whisper' detected. You hear a faint whisper... Run!";
+                    break;
+                case "story":
+                    overlayMessage.textContent = "Do you want to know about the story?";
+                    attachment.style.display = 'block'; // Show the attachment
+                    overlayLink.textContent = "View the document 'UNKNOWN.pdf'";
+                    overlayLink.href = "https://docs.google.com/document/d/1UUX7PKAcIXg9kC8UmNjzM6G8lnpQUvb7-UayGLI1RqA/edit?usp=sharing";
+                    break;
+                default:
+                    overlayMessage.textContent = "Invalid code";
+            }
+
+            overlay.classList.add("active");
+        }
+
+        function closeOverlay() {
+            const overlay = document.getElementById("overlay");
+            overlay.classList.remove("active");
+        }
+    </script>
+</body>
+</html>
