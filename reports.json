@@ -1,0 +1,16 @@
+{
+  "report1": {
+    "status": "<status of report1>",
+    "messages": {
+      "message1": "<content of message1>",
+      "message2": "<content of message2>"
+    }
+  },
+  "report2": {
+    "status": "<status of report2>",
+    "messages": {
+      "message1": "<content of message1>",
+      "message2": "<content of message2>"
+    }
+  }
+}

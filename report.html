@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bug Reports</title>
+<meta name="generator" content="WYSIWYG Web Builder 14 - http://www.wysiwygwebbuilder.com">
+<link href="NexusMCwebsite5.css" rel="stylesheet">
+<link href="report.css" rel="stylesheet">
+<style>
+/* Add basic styles for the popup form */
+#popupForm {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 341px;
+  padding: 20px;
+  background-color: #FBFBFB;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+#popupForm label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#popupForm input,
+#popupForm textarea {
+  width: calc(100% - 8px);
+  margin-bottom: 10px;
+}
+
+#popupForm input[type="text"],
+#popupForm input[type="email"],
+#popupForm textarea {
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: Arial;
+  font-weight: normal;
+  font-size: 13px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+#popupForm input[type="text"]:focus,
+#popupForm input[type="email"]:focus,
+#popupForm textarea:focus {
+  border-color: #66AFE9;
+  box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(102,175,233,0.60);
+  outline: 0;
+}
+
+#popupForm button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #2E6DA4;
+  border-radius: 4px;
+  background-color: #3370B7;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Arial;
+  font-weight: normal;
+  font-size: 13px;
+}
+
+#popupForm button.cancel {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+</style>
+</head>
+<body>
+<div id="wb_Image1" style="position:absolute;left:0px;top:0px;width:1919px;height:976px;z-index:8;">
+<img src="images/.4.PNG" id="Image1" alt=""></div>
+<div id="wb_Text2" style="position:absolute;left:707px;top:49px;width:157px;height:32px;z-index:9;">
+<span style="color:#D2691E;font-family:Arial;font-size:27px;"><u>Screenshots</u></span></div>
+<input type="button" id="Button1" onclick="window.location.href='./page1.html';return false;" name="" value="" style="position:absolute;left:707px;top:53px;width:157px;height:25px;z-index:10;">
+<div id="wb_Text3" style="position:absolute;left:1093px;top:49px;width:141px;height:32px;z-index:11;">
+<span style="color:#D2691E;font-family:Arial;font-size:27px;"><u>Home</u></span></div>
+<input type="submit" id="Button2" onclick="window.location.href='./index.html';return false;" name="" value="" style="position:absolute;left:1093px;top:53px;width:71px;height:25px;z-index:12;">
+<div id="wb_Text4" style="position:absolute;left:889px;top:49px;width:156px;height:32px;z-index:13;">
+<span style="color:#D2691E;font-family:Arial;font-size:27px;"><u>Bug reports</u></span></div>
+<input type="submit" id="Button3" onclick="window.location.href='./page2.html';return false;" name="" value="" style="position:absolute;left:889px;top:53px;width:146px;height:25px;z-index:14;">
+<div id="wb_Image3" style="position:absolute;left:0px;top:125px;width:417px;height:80px;z-index:15;">
+<img src="images/Nexus-MC.png" id="Image3" alt=""></div>
+<div id="wb_Image5" style="position:absolute;left:10px;top:199px;width:116px;height:10px;z-index:16;">
+<img src="images/610bc41ce7fe9c77999fbbfae7f4c1f1.png" id="Image5" alt=""></div>
+<!-- Other images -->
+<div id="wb_Form2" style="position:absolute;left:776px;top:327px;width:341px;height:259px;z-index:33;">
+<button id="createReportButton" style="position:absolute;left:143px;top:183px;width:96px;height:25px;z-index:5;">Create Report</button>
+</div>
+
+<!-- Popup Form for Creating a Report -->
+<div id="popupForm">
+  <h2>Create a Bug Report</h2>
+  <form id="reportForm">
+    <label for="reportName">Report Name:</label>
+    <input type="text" id="reportName" name="name" placeholder="Enter report name" required>
+    
+    <label for="firstMessage">First Comment:</label>
+    <textarea id="firstMessage" name="message" placeholder="Enter your first comment" rows="4" required></textarea>
+    
+    <button type="submit">Submit</button>
+    <button type="button" class="cancel" onclick="closePopup()">Cancel</button>
+  </form>
+</div>
+
+<script>
+// Show the popup form
+document.getElementById('createReportButton').addEventListener('click', function() {
+  document.getElementById('popupForm').style.display = 'block';
+});
+
+// Close the popup form
+function closePopup() {
+  document.getElementById('popupForm').style.display = 'none';
+}
+
+// Handle form submission
+document.getElementById('reportForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('reportName').value;
+  const message = document.getElementById('firstMessage').value;
+
+  fetch('https://<your-netlify-function-url>/bug-report', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      message: message
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert('Report submitted successfully!');
+    closePopup();
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('There was a problem submitting your report.');
+  });
+});
+</script>
+</body>
+</html>
