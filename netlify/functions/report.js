@@ -3,7 +3,7 @@ const path = require('path');
 const axios = require('axios');
 
 // Define the GitHub token and other constants
-const TOKEN = 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;
+const TOKEN = "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";
 const FILE_PATH = path.join(__dirname, '/reports.json');
 const OWNER = 'ff6f8d68'; // GitHub username or organization
 const REPO = 'nexusMC'; // GitHub repository name
