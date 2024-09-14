@@ -72,6 +72,29 @@
   background-color: #6c757d;
   border-color: #6c757d;
 }
+
+/* Styles for the reports display */
+#reportsContainer {
+  position: absolute;
+  left: 776px;
+  top: 600px;
+  width: 341px;
+  z-index: 34;
+}
+
+.reportItem {
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-family: Arial;
+  font-size: 13px;
+}
+
+.reportItem h3 {
+  margin-top: 0;
+}
 </style>
 </head>
 <body>
@@ -110,6 +133,11 @@
   </form>
 </div>
 
+<div id="reportsContainer">
+  <h2>Bug Reports</h2>
+  <div id="reportsList"></div>
+</div>
+
 <script>
 // Show the popup form
 document.getElementById('createReportButton').addEventListener('click', function() {
@@ -135,19 +163,58 @@ document.getElementById('reportForm').addEventListener('submit', function(event)
     },
     body: JSON.stringify({
       name: name,
-      message: message
+      status: 'New',  // Default status, adjust as needed
+      messages: {
+        'message1': message
+      }
     })
   })
   .then(response => response.json())
   .then(data => {
     alert('Report submitted successfully!');
     closePopup();
+    fetchReports();  // Refresh the reports list
   })
   .catch(error => {
     console.error('Error:', error);
     alert('There was a problem submitting your report.');
   });
 });
+
+// Fetch and display reports
+function fetchReports() {
+  fetch('https://<your-netlify-function-url>/reports.json')
+    .then(response => response.json())
+    .then(data => {
+      const reportsList = document.getElementById('reportsList');
+      reportsList.innerHTML = ''; // Clear existing reports
+
+      Object.keys(data).forEach(reportName => {
+        const report = data[reportName];
+        const reportDiv = document.createElement('div');
+        reportDiv.className = 'reportItem';
+        
+        let messagesHtml = '';
+        for (const [msgKey, msgValue] of Object.entries(report.messages || {})) {
+          messagesHtml += `<p><strong>${msgKey}:</strong> ${msgValue}</p>`;
+        }
+        
+        reportDiv.innerHTML = `
+          <h3>${reportName}</h3>
+          <p><strong>Status:</strong> ${report.status}</p>
+          ${messagesHtml}
+        `;
+
+        reportsList.appendChild(reportDiv);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching reports:', error);
+    });
+}
+
+// Initial fetch of reports
+fetchReports();
 </script>
 </body>
 </html>
