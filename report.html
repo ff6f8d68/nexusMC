@@ -6,6 +6,41 @@
 <meta name="generator" content="WYSIWYG Web Builder 14 - http://www.wysiwygwebbuilder.com">
 <link href="NexusMCwebsite5.css" rel="stylesheet">
 <link href="report.css" rel="stylesheet">
+<script>
+  async function handleSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Collect form data
+    const formData = new FormData(event.target);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    // Create query string from form data
+    const queryString = new URLSearchParams(data).toString();
+
+    // Send the form data to the Netlify function
+    try {
+      const response = await fetch('https://nexusmc.netlify.app/.netlify/functions/report?' + queryString, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        // Redirect to the mailto link
+        const mailtoLink = `mailto:nexusmcreports@proton.me?subject=Support%20Query&body=${encodeURIComponent(data.Report)}`;
+        window.location.href = mailtoLink;
+      } else {
+        alert('Failed to submit the form');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to submit the form');
+    }
+  }
+</script>
 </head>
 <body>
 <div id="wb_Image1" style="position:absolute;left:0px;top:0px;width:1919px;height:976px;z-index:8;">
@@ -56,7 +91,7 @@
 <div id="wb_Image21" style="position:absolute;left:848px;top:381px;width:96px;height:94px;z-index:32;">
 <img src="images/bg_main.png" id="Image21" alt=""></div>
 <div id="wb_Form2" style="position:absolute;left:776px;top:326px;width:341px;height:259px;z-index:33;">
-<form name="contact" method="post" action="mailto:nexusmcreports@proton.me?subject=Support Query" enctype="text/plain" id="Form2">
+<form name="contact" onsubmit="handleSubmit(event)" id="Form2">
 <select name="Type" size="1" id="Combobox1" style="position:absolute;left:126px;top:13px;width:200px;height:28px;z-index:0;">
 <option>Glitch</option>
 <option>Small</option>
