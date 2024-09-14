@@ -90,10 +90,52 @@
   padding: 10px;
   font-family: Arial;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .reportItem h3 {
   margin-top: 0;
+}
+
+#reportDetails {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 341px;
+  padding: 20px;
+  background-color: #FBFBFB;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+#reportDetails .reportContent {
+  margin-bottom: 10px;
+}
+
+#reportDetails textarea {
+  width: calc(100% - 8px);
+  margin-bottom: 10px;
+}
+
+#reportDetails button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #2E6DA4;
+  border-radius: 4px;
+  background-color: #3370B7;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Arial;
+  font-weight: normal;
+  font-size: 13px;
+}
+
+#reportDetails button.cancel {
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 </style>
 </head>
@@ -133,6 +175,18 @@
   </form>
 </div>
 
+<!-- Report Details Popup -->
+<div id="reportDetails">
+  <h2>Report Details</h2>
+  <div id="reportContent" class="reportContent"></div>
+  <form id="commentForm">
+    <label for="comment">Add a Comment:</label>
+    <textarea id="comment" name="comment" placeholder="Enter your comment" rows="4"></textarea>
+    <button type="submit">Submit Comment</button>
+    <button type="button" class="cancel" onclick="closeDetails()">Cancel</button>
+  </form>
+</div>
+
 <div id="reportsContainer">
   <h2>Bug Reports</h2>
   <div id="reportsList"></div>
@@ -147,6 +201,50 @@ document.getElementById('createReportButton').addEventListener('click', function
 // Close the popup form
 function closePopup() {
   document.getElementById('popupForm').style.display = 'none';
+}
+
+// Show the report details
+function showDetails(reportName, report) {
+  const reportContent = document.getElementById('reportContent');
+  reportContent.innerHTML = `
+    <h3>${reportName}</h3>
+    <p><strong>Status:</strong> ${report.status}</p>
+    ${Object.entries(report.messages || {}).map(([msgKey, msgValue]) => `<p><strong>${msgKey}:</strong> ${msgValue}</p>`).join('')}
+  `;
+  
+  document.getElementById('reportDetails').style.display = 'block';
+  
+  // Handle comment form submission
+  document.getElementById('commentForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const comment = document.getElementById('comment').value;
+    
+    fetch('https://nexusmc.netlify.app/.netlify/functions/report', {
+      method: 'PATCH',  // Use PATCH method to update the report
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: reportName,
+        comment: comment
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert('Comment added successfully!');
+      showDetails(reportName, data);  // Refresh the report details
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('There was a problem submitting your comment.');
+    });
+  });
+}
+
+// Close the report details
+function closeDetails() {
+  document.getElementById('reportDetails').style.display = 'none';
 }
 
 // Handle form submission
@@ -194,17 +292,15 @@ function fetchReports() {
         const reportDiv = document.createElement('div');
         reportDiv.className = 'reportItem';
         
-        let messagesHtml = '';
-        for (const [msgKey, msgValue] of Object.entries(report.messages || {})) {
-          messagesHtml += `<p><strong>${msgKey}:</strong> ${msgValue}</p>`;
-        }
-        
         reportDiv.innerHTML = `
           <h3>${reportName}</h3>
           <p><strong>Status:</strong> ${report.status}</p>
-          ${messagesHtml}
         `;
-
+        
+        reportDiv.addEventListener('click', function() {
+          showDetails(reportName, report);
+        });
+        
         reportsList.appendChild(reportDiv);
       });
     })
