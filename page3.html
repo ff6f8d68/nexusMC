@@ -2,201 +2,68 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Bug Reports</title>
+<title>Untitled Page</title>
 <meta name="generator" content="WYSIWYG Web Builder 14 - http://www.wysiwygwebbuilder.com">
 <link href="NexusMCwebsite5.css" rel="stylesheet">
-<link href="page2.css" rel="stylesheet">
-<style>
-/* Basic styles for the bug reports container and form */
-#bugReportsContainer {
-  position: absolute;
-  left: 703px;
-  top: 126px;
-  width: 1180px;
-  z-index: 5;
-}
-
-.bugItem {
-  border: 1px solid #CCCCCC;
-  border-radius: 4px;
-  background-color: #FFFFFF;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-family: Arial;
-  font-size: 13px;
-}
-
-.bugItem h3 {
-  margin-top: 0;
-}
-
-#reportForm {
-  position: absolute;
-  left: 703px;
-  top: 700px;
-  width: 500px;
-  padding: 20px;
-  background-color: #FBFBFB;
-  border: 1px solid #CCCCCC;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-  z-index: 30;
-}
-
-#reportForm label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-#reportForm input,
-#reportForm textarea {
-  width: calc(100% - 8px);
-  margin-bottom: 10px;
-}
-
-#reportForm input[type="text"],
-#reportForm input[type="email"],
-#reportForm textarea {
-  border: 1px solid #CCCCCC;
-  border-radius: 4px;
-  background-color: #FFFFFF;
-  color: #000000;
-  font-family: Arial;
-  font-weight: normal;
-  font-size: 13px;
-  padding: 4px;
-  box-sizing: border-box;
-}
-
-#reportForm input[type="text"]:focus,
-#reportForm input[type="email"]:focus,
-#reportForm textarea:focus {
-  border-color: #66AFE9;
-  box-shadow: inset 0px 1px 1px rgba(0,0,0,0.075), 0px 0px 8px rgba(102,175,233,0.60);
-  outline: 0;
-}
-
-#reportForm button {
-  display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid #2E6DA4;
-  border-radius: 4px;
-  background-color: #3370B7;
-  color: #FFFFFF;
-  cursor: pointer;
-  font-family: Arial;
-  font-weight: normal;
-  font-size: 13px;
-}
-</style>
+<link href="page3.css" rel="stylesheet">
 </head>
 <body>
-<div id="wb_Image1" style="position:absolute;left:0px;top:0px;width:1919px;height:974px;z-index:0;">
-<img src="images/.4.PNG" id="Image1" alt=""></div>
-<div id="wb_Text2" style="position:absolute;left:703px;top:51px;width:159px;height:32px;z-index:1;">
+<div id="wb_Image1" style="position:absolute;left:0px;top:0px;width:1919px;height:976px;z-index:0;">
+<img src="images/4.PNG" id="Image1" alt=""></div>
+<div id="wb_Text2" style="position:absolute;left:707px;top:49px;width:157px;height:32px;z-index:1;">
 <span style="color:#D2691E;font-family:Arial;font-size:27px;"><u>Screenshots</u></span></div>
-<div id="wb_Text3" style="position:absolute;left:917px;top:51px;width:141px;height:32px;z-index:2;">
+<input type="button" id="Button1" onclick="window.location.href='./page1.html';return false;" name="" value="" style="position:absolute;left:707px;top:53px;width:157px;height:25px;z-index:2;">
+<div id="wb_Text3" style="position:absolute;left:1093px;top:49px;width:141px;height:32px;z-index:3;">
 <span style="color:#D2691E;font-family:Arial;font-size:27px;"><u>Home</u></span></div>
-<div id="wb_Text4" style="position:absolute;left:1064px;top:51px;width:150px;height:32px;z-index:3;">
-<span style="color:#D2691E;font-family:Arial;font-size:27px;"><u>Changelogs</u></span></div>
-<div id="wb_Image2" style="position:absolute;left:0px;top:126px;width:1919px;height:848px;z-index:4;">
-<img src="images/end.png" id="Image2" alt=""></div>
-<div id="wb_Image4" style="position:absolute;left:704px;top:234px;width:510px;height:506px;z-index:5;">
-<img src="images/.2.PNG" id="Image4" alt=""></div>
-<div id="wb_Text1" style="position:absolute;left:713px;top:246px;width:138px;height:19px;z-index:6;">
-<span style="color:#FFFFFF;font-family:Arial;font-size:17px;">Can't leave hub</span></div>
-<div id="wb_Text5" style="position:absolute;left:842px;top:247px;width:57px;height:16px;z-index:7;">
-<span style="color:#DAA520;font-family:Arial;font-size:13px;">Fixing</span></div>
-<!-- More bug descriptions -->
-<div id="bugReportsContainer">
-  <h2>Current Bug Reports</h2>
-  <div id="bugReportsList"></div>
-</div>
-
-<!-- Bug Report Form -->
-<div id="reportForm">
-  <h2>Report a Bug</h2>
-  <form id="newBugForm">
-    <label for="reportName">Bug Name:</label>
-    <input type="text" id="reportName" name="name" placeholder="Enter bug name" required>
-    
-    <label for="reportDescription">Description:</label>
-    <textarea id="reportDescription" name="description" placeholder="Enter bug description" rows="4" required></textarea>
-    
-    <button type="submit">Submit</button>
-  </form>
-</div>
-
-<input type="button" id="Button1" onclick="window.location.href='./page1.html';return false;" name="" value="Page 1" style="position:absolute;left:703px;top:55px;width:159px;height:25px;z-index:24;">
-<input type="submit" id="Button2" onclick="window.location.href='./index.html';return false;" name="" value="Home" style="position:absolute;left:917px;top:55px;width:77px;height:25px;z-index:23;">
-<input type="submit" id="Button3" onclick="window.location.href='./page3.html';return false;" name="" value="Changelogs" style="position:absolute;left:1064px;top:55px;width:156px;height:25px;z-index:25;">
-<input type="button" id="Button4" onclick="window.location.href='./report.html';return false;" name="" value="Report bug" style="position:absolute;left:1106px;top:702px;width:108px;height:38px;z-index:29;">
-<div id="wb_Image3" style="position:absolute;left:0px;top:126px;width:417px;height:80px;z-index:26;">
+<input type="submit" id="Button2" onclick="window.location.href='./index.html';return false;" name="" value="" style="position:absolute;left:1093px;top:53px;width:71px;height:25px;z-index:4;">
+<div id="wb_Text4" style="position:absolute;left:889px;top:49px;width:156px;height:32px;z-index:5;">
+<span style="color:#D2691E;font-family:Arial;font-size:27px;"><u>Bug reports</u></span></div>
+<input type="submit" id="Button3" onclick="window.location.href='./page2.html';return false;" name="" value="" style="position:absolute;left:889px;top:53px;width:146px;height:25px;z-index:6;">
+<div id="wb_Image3" style="position:absolute;left:0px;top:125px;width:417px;height:80px;z-index:7;">
 <img src="images/Nexus-MC.png" id="Image3" alt=""></div>
-<div id="wb_Image5" style="position:absolute;left:10px;top:200px;width:116px;height:10px;z-index:27;">
+<div id="wb_Image5" style="position:absolute;left:10px;top:199px;width:116px;height:10px;z-index:8;">
 <img src="images/610bc41ce7fe9c77999fbbfae7f4c1f1.png" id="Image5" alt=""></div>
-<div id="wb_Image6" style="position:absolute;left:1177px;top:110px;width:267px;height:277px;z-index:28;">
-<img src="images/lagpiggif.gif" id="Image6" alt=""></div>
-<script>
-// Handle new bug report form submission
-document.getElementById('newBugForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const name = document.getElementById('reportName').value;
-  const description = document.getElementById('reportDescription').value;
-
-  fetch('https://nexusmc.netlify.app/.netlify/functions/report', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name,
-      description: description,
-      status: 'New' // Default status
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    alert('Bug report submitted successfully!');
-    document.getElementById('reportName').value = '';
-    document.getElementById('reportDescription').value = '';
-    fetchBugReports(); // Refresh the bug reports list
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert('There was a problem submitting your bug report.');
-  });
-});
-
-// Fetch and display bug reports
-function fetchBugReports() {
-  fetch('https://nexusmc.netlify.app/reports.json')
-    .then(response => response.json())
-    .then(data => {
-      const bugReportsList = document.getElementById('bugReportsList');
-      bugReportsList.innerHTML = ''; // Clear existing reports
-
-      Object.keys(data).forEach(reportName => {
-        const report = data[reportName];
-        const reportDiv = document.createElement('div');
-        reportDiv.className = 'bugItem';
-        
-        reportDiv.innerHTML = `
-          <h3>${reportName}</h3>
-          <p><strong>Status:</strong> ${report.status}</p>
-          <p><strong>Description:</strong> ${report.description}</p>
-        `;
-        
-        bugReportsList.appendChild(reportDiv);
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching bug reports:', error);
-    });
-}
-
-// Initial fetch of bug reports
-fetchBugReports();
-</script>
+<div id="wb_Image2" style="position:absolute;left:794px;top:149px;width:301px;height:40px;z-index:9;">
+<img src="images/changelogs.png" id="Image2" alt=""></div>
+<div id="wb_Image6" style="position:absolute;left:1040px;top:382px;width:96px;height:94px;z-index:10;">
+<img src="images/bg_main.png" id="Image6" alt=""></div>
+<div id="wb_Image7" style="position:absolute;left:944px;top:381px;width:96px;height:94px;z-index:11;">
+<img src="images/bg_main.png" id="Image7" alt=""></div>
+<div id="wb_Image8" style="position:absolute;left:944px;top:287px;width:96px;height:94px;z-index:12;">
+<img src="images/bg_main.png" id="Image8" alt=""></div>
+<div id="wb_Image9" style="position:absolute;left:1039px;top:288px;width:96px;height:94px;z-index:13;">
+<img src="images/bg_main.png" id="Image9" alt=""></div>
+<div id="wb_Image10" style="position:absolute;left:1040px;top:475px;width:96px;height:94px;z-index:14;">
+<img src="images/bg_main.png" id="Image10" alt=""></div>
+<div id="wb_Image11" style="position:absolute;left:944px;top:475px;width:96px;height:94px;z-index:15;">
+<img src="images/bg_main.png" id="Image11" alt=""></div>
+<div id="wb_Image12" style="position:absolute;left:944px;top:569px;width:96px;height:94px;z-index:16;">
+<img src="images/bg_main.png" id="Image12" alt=""></div>
+<div id="wb_Image13" style="position:absolute;left:1039px;top:568px;width:96px;height:94px;z-index:17;">
+<img src="images/bg_main.png" id="Image13" alt=""></div>
+<div id="wb_Image14" style="position:absolute;left:848px;top:475px;width:96px;height:94px;z-index:18;">
+<img src="images/bg_main.png" id="Image14" alt=""></div>
+<div id="wb_Image15" style="position:absolute;left:752px;top:475px;width:96px;height:94px;z-index:19;">
+<img src="images/bg_main.png" id="Image15" alt=""></div>
+<div id="wb_Image16" style="position:absolute;left:752px;top:569px;width:96px;height:94px;z-index:20;">
+<img src="images/bg_main.png" id="Image16" alt=""></div>
+<div id="wb_Image17" style="position:absolute;left:848px;top:569px;width:96px;height:94px;z-index:21;">
+<img src="images/bg_main.png" id="Image17" alt=""></div>
+<div id="wb_Image18" style="position:absolute;left:752px;top:381px;width:96px;height:94px;z-index:22;">
+<img src="images/bg_main.png" id="Image18" alt=""></div>
+<div id="wb_Image19" style="position:absolute;left:752px;top:287px;width:96px;height:94px;z-index:23;">
+<img src="images/bg_main.png" id="Image19" alt=""></div>
+<div id="wb_Image20" style="position:absolute;left:848px;top:287px;width:96px;height:94px;z-index:24;">
+<img src="images/bg_main.png" id="Image20" alt=""></div>
+<div id="wb_Image21" style="position:absolute;left:848px;top:381px;width:96px;height:94px;z-index:25;">
+<img src="images/bg_main.png" id="Image21" alt=""></div>
+<div id="wb_Text5" style="position:absolute;left:752px;top:298px;width:466px;height:192px;z-index:26;">
+<span style="color:#D3D3D3;font-family:Arial;font-size:32px;">Rift 1.4 - <br>Rift connecting 2x faster<br>Better Rift gui<br>More rift commands<br></span><span style="color:#D3D3D3;font-family:Arial;font-size:13px;"><br><br></span></div>
+<div id="wb_Image22" style="position:absolute;left:966px;top:476px;width:224px;height:224px;z-index:27;">
+<img src="images/fadf.png" id="Image22" alt=""></div>
+<div id="wb_Image4" style="position:absolute;left:1318px;top:102px;width:399px;height:388px;z-index:28;">
+<img src="images/zombiea.PNG" id="Image4" alt=""></div>
+<div id="wb_Image23" style="position:absolute;left:1613px;top:125px;width:382px;height:394px;z-index:29;">
+<img src="images/steverunnung.PNG" id="Image23" alt=""></div>
 </body>
 </html>
