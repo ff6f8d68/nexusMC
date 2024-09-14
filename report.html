@@ -156,7 +156,7 @@ document.getElementById('reportForm').addEventListener('submit', function(event)
   const name = document.getElementById('reportName').value;
   const message = document.getElementById('firstMessage').value;
 
-  fetch('https://<your-netlify-function-url>/bug-report', {
+  fetch('https://nexusmc.netlify.app/.netlify/functions/report', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -183,7 +183,7 @@ document.getElementById('reportForm').addEventListener('submit', function(event)
 
 // Fetch and display reports
 function fetchReports() {
-  fetch('https://<your-netlify-function-url>/reports.json')
+  fetch('https://nexusmc.netlify.app/reports.json')
     .then(response => response.json())
     .then(data => {
       const reportsList = document.getElementById('reportsList');
