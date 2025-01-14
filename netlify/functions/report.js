@@ -5,9 +5,9 @@ exports.handler = async function(event, context) {
     // Your Discord webhook URL
 
     const wht = "a2FjNDI4UW5EWlpsRW5KeEwtV1NFdngxV09yTktqTFBnNGNOaEtBTDR4bWtJakk0RGtxSjBCbEktd2kwWXNYY244YWg=";
-    const whId = "MTI4NDU1OTA2Mjg1OTUxODAxNA==";
+    const whId = "MTI4NDU1OTA2Mjg1OTUxODAxNC8=";
     const base = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv";
-    const discordWebhookUrl = atob(base) + atob(whId) + "/" + atob(wht);
+    const discordWebhookUrl = Buffer.from(base+whId+wht, 'base64').toString('utf-8');
 
     // Prepare the payload for Discord
     const payload = {
